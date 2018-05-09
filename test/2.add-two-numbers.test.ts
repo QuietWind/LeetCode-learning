@@ -20,6 +20,12 @@ test(`Add two list node`, () => {
 
   expect(
     parseNodeToNumArr(
+      addTwoNumbers(parseNumArrToNode([9, 9]), parseNumArrToNode([1]))
+    )
+  ).toEqual([0, 0, 1]);
+
+  expect(
+    parseNodeToNumArr(
       addTwoNumbers(
         parseNumArrToNode([
           2,

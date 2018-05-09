@@ -39,9 +39,10 @@ export const parseNodeToNumArr = (
 };
 
 export function addTwoNumbers(l1: ListNode, l2: ListNode): ListNode {
-  const rNode = new ListNode(0);
+  let rNode = new ListNode(0);
   let prev: ListNode | null = l1;
   let next: ListNode | null = l2;
+  let isFirst = true;
   let currentNode = rNode;
   let carry = 0;
 
@@ -52,7 +53,13 @@ export function addTwoNumbers(l1: ListNode, l2: ListNode): ListNode {
 
     carry = Math.floor(sum / 10);
 
-    currentNode.next = node;
+    if (isFirst) {
+      rNode = node;
+      isFirst = false;
+    } else {
+      currentNode.next = node;
+    }
+
     currentNode = node;
 
     prev = prev ? prev.next : null;
@@ -63,5 +70,5 @@ export function addTwoNumbers(l1: ListNode, l2: ListNode): ListNode {
     currentNode.next = new ListNode(carry);
   }
 
-  return rNode.next ? rNode.next : new ListNode(0);
+  return rNode;
 }
